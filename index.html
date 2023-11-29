@@ -30,7 +30,19 @@
         // 避免搜索索引冲突
         // 同一域下的多个网站之间
         namespace: 'website-2',
-      }
+      },
+      plugins: [
+        function(hook,vm){
+        hook.init(function(){
+          let url = new URLSearchParams(window.location.search)
+          let params = url.cookie
+          if(params !== 'cookie'){
+            alert('请先登录')
+            window.open('http://150.158.85.223:31301/login','_self')
+          }
+         })
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->
